@@ -10,22 +10,32 @@ pyautogui.PAUSE = 0.5
 pyautogui.press("win")
 pyautogui.write("chrome")
 pyautogui.press("enter")
-pyautogui.write("https://dlp.hashtagtreinamentos.com/python/intensivao/login")
+
+#entrar no site
+link = "https://dlp.hashtagtreinamentos.com/python/intensivao/login"
+pyautogui.write(link)
 pyautogui.press("enter")
 
 #esperar carregar
-time.sleep(5)
-print(pyautogui.position())#pegar a posição do mouse para saber onde clicar
-pyautogui.scroll(-200) #testar quanto de scroll
+time.sleep(3)
 
 #fazer login
-pyautogui.click(x=669, y=379)
+pyautogui.click(x=416, y=266)
 pyautogui.write("thuannymarcilia@outlook.com")
-pyautogui.press("tab")
-pyautogui.write("sua senha")
-pyautogui.click(x=1902, y=838)
 
-#aqui precisamos percorrer as linhas da tabela para cada linha vamos cadastrar um produto
+#senha
+pyautogui.press("tab")
+pyautogui.write("123")
+
+#clicar em logar
+pyautogui.click(x=691, y=537)
+time.sleep(3)
+
+#importar a base de produtos
+tabela = pd.read_csv("produtos.csv")
+print(tabela)
+
+#aqui precisamos percorrer as linhas da tabela para cada linha vamosthuannymarcilia@outlook.com sua senha cadastrar um produto
 for linha in tabela.index:
   pyautogui.click(x=1723, y=418)
   pyautogui.write(str(tabela.loc[linha, "codigo"])) #pega o código da tabela e escreva no campo
